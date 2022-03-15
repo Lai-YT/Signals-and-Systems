@@ -4,8 +4,8 @@ classdef EdgeDetector
     % Note that edges are binarizes with 0 and 255 instead of 0 and 1.
     
     properties (Constant)
-        HOR_KERNEL = [-1, 0, 1; -2, 0, 2; -1, 0, 1]  % convolve to emphasize horizontal edges                      
-        VER_KERNEL = [-1, -2, -1; 0, 0, 0; 1, 2, 1]  % convolve to emphasize vertical edges
+        VER_KERNEL = [-1, 0, 1; -2, 0, 2; -1, 0, 1]  % convolve to emphasize vertical edges                      
+        HOR_KERNEL = [-1, -2, -1; 0, 0, 0; 1, 2, 1]  % convolve to emphasize horizontal edges
         
         % The best fitting threshold varies with respect to different images.
         THRESHOLD = 64
