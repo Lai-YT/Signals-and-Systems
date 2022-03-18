@@ -40,7 +40,7 @@ classdef EdgeDetector
             % Returns:
             %   hor_edge (uint8):
             %       The horizontal edges of image.
-            %       Edges are white(0), others are black(255).
+            %       Edges are white(255), others are black(0).
 
             hor_edge = obj.ConvolveWith(obj.HOR_KERNEL);
             hor_edge = obj.Binarize(hor_edge);
@@ -52,7 +52,7 @@ classdef EdgeDetector
             % Returns:
             %   ver_edge (uint8):
             %       The vertical edges of image.
-            %       Edges are white(0), others are black(255).
+            %       Edges are white(255), others are black(0).
 
             ver_edge = obj.ConvolveWith(obj.VER_KERNEL);
             ver_edge = obj.Binarize(ver_edge);
@@ -64,7 +64,7 @@ classdef EdgeDetector
             % Returns:
             %   edge (uint8):
             %       The edges of image.
-            %       Edges are white(0), others are black(255).
+            %       Edges are white(255), others are black(0).
             
             % MATLAB clamps the overflow value to MAX (255 for uint8).
             edge = obj.HorizontalEdge() + obj.VerticalEdge();
