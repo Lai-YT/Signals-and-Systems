@@ -8,7 +8,7 @@ classdef EdgeDetector
         HOR_KERNEL = [-1, -2, -1; 0, 0, 0; 1, 2, 1]  % emphasize horizontal edges
 
         % The best fitting threshold varies with respect to images.
-        THRESHOLD = 0.3
+        THRESHOLD = 0.4
     end
 
     properties (SetAccess=private)
@@ -42,8 +42,10 @@ classdef EdgeDetector
             %   hor_edge (logical):
             %       The horizontal edges of image.
             %       Edges are white(1), others are black(0).
-
-            hor_edge = obj.ConvolveWith(obj.HOR_KERNEL);
+            
+            % take magnitude since we only care about the difference
+            % between both sides
+            hor_edge = abs(obj.ConvolveWith(obj.HOR_KERNEL));
             hor_edge = obj.Binarize(hor_edge);
         end
 
@@ -55,7 +57,7 @@ classdef EdgeDetector
             %       The vertical edges of image.
             %       Edges are white(1), others are black(0).
 
-            ver_edge = obj.ConvolveWith(obj.VER_KERNEL);
+            ver_edge = abs(obj.ConvolveWith(obj.VER_KERNEL));
             ver_edge = obj.Binarize(ver_edge);
         end
 
@@ -72,7 +74,7 @@ classdef EdgeDetector
         end
     end
 
-    methods (Access=private)
+    methods (Access=private)        
         function con = ConvolveWith(obj, kernel)
             % Performs convolution of the image with kernel.
             %
@@ -82,7 +84,7 @@ classdef EdgeDetector
             % Returns:
             %   con (double):
             %       The values can be negative due to convolution,
-            %       binarize to have them back to normal.
+            %       abs() if you care only the magnitude.
 
             [row, col] = size(obj.image);
             con = zeros([row, col]);
