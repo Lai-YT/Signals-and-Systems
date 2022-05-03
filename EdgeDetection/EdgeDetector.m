@@ -42,7 +42,7 @@ classdef EdgeDetector
             %   hor_edge (logical):
             %       The horizontal edges of image.
             %       Edges are white(1), others are black(0).
-            
+
             % take magnitude since we only care about the difference
             % between both sides
             hor_edge = abs(obj.ConvolveWith(obj.HOR_KERNEL));
@@ -68,13 +68,13 @@ classdef EdgeDetector
             %   edge (logical):
             %       The edges of image.
             %       Edges are white(1), others are black(0).
-    
+
             % Binarized images are logical, do "or" instead of "+".
             edge = obj.HorizontalEdge() | obj.VerticalEdge();
         end
     end
 
-    methods (Access=private)        
+    methods (Access=private)
         function con = ConvolveWith(obj, kernel)
             % Performs convolution of the image with kernel.
             %
