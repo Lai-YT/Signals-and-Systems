@@ -87,7 +87,7 @@ for w = 1:length(Fs)
 end
 
 fig_creator.CreateFigure();
-plot(f, abs(H));
+plot(Fs, abs(H));
 xlim([-pi, pi]);
 title("Frequency Response");
 xlabel("\omega");
